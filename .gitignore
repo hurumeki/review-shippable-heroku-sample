@@ -1,0 +1,7 @@
+.bundle
+vendor/bundle
+
+/app/book.pdf
+/articles/book.pdf
+/articles/*.html
+/articles/webroot

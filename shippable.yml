@@ -1,0 +1,22 @@
+build_image: vvakame/review
+language: ruby
+rvm:
+  - 2.1.7
+env:
+  global:
+    - APP_NAME=your-heroku-app-name
+
+install:
+  - gem install bundler -v 1.13
+  - bundle install
+
+script:
+  - bundle exec rake pdf
+  - cp articles/book.pdf app/book.pdf
+  - git add -f app/book.pdf
+  - git commit -m "Add pdf by shippable"
+
+after_success:
+  - git push -f git@heroku.com:$APP_NAME.git master:master
+
+cache: true
